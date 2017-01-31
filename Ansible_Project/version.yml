@@ -1,0 +1,4 @@
+- hosts: machine2
+  become: yes
+  roles:
+        - version
