@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+    - name: check process
+      shell: "ps -ef | grep tomcat | grep -v grep | wc -l"
+      register: tomcat_process
+
+    - name: start tomcat
+      become: yes
+      shell: initctl start tomcat
+      when: "tomcat_process.stdout != 0"
